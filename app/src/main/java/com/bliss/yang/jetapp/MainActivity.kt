@@ -1,8 +1,10 @@
 package com.bliss.yang.jetapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 
 /**
 * Author: yangtianfu
@@ -20,6 +22,7 @@ class MainActivity : AppCompatActivity() {
             override fun onChange(des: String) {
                 Log.e(TAG, "接受到 onChange: ")
             }
+
         })
         //lifecycle将观察者和被观察者绑定，解决组件对activity生命周期的依赖问题
         lifecycle.addObserver(lifecycleListener)
@@ -38,5 +41,12 @@ class MainActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         Log.e(TAG, "onDestroy: 执行", )
+    }
+
+    fun launchService(view: View) {
+        startService(Intent(this,MyService::class.java))
+    }
+    fun closeService(view: View) {
+        stopService(Intent(this,MyService::class.java))
     }
 }

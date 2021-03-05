@@ -11,7 +11,7 @@ import androidx.lifecycle.OnLifecycleEvent
 * Date: 2021/3/5 16:30
 * Describe: 绑定activity的生命周期
 */
-class LifeCycleListener(val activity: Activity,val onChangeListener: LifeCycleListener.OnChangeListener) :LifecycleObserver {
+class LifeCycleListener(val activity: Activity, private val onChangeListener: OnChangeListener) :LifecycleObserver {
     companion object{
         init {
             Log.e("tagLifeCycleListener", ": 执行" )
