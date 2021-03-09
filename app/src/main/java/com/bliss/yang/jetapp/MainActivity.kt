@@ -20,22 +20,11 @@ import androidx.navigation.ui.NavigationUI
 */
 class MainActivity : AppCompatActivity() {
     private val TAG = "MainActivity"
-    private lateinit var lifecycleListener:LifeCycleListener
     private var appBarConfiguration:AppBarConfiguration?=null//用于APPBar的配置
     private var navController:NavController?=null//用于页面的导航和切换
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        Log.e(TAG, "onCreate: 执行", )
-        lifecycleListener = LifeCycleListener(this, object : LifeCycleListener.OnChangeListener {
-            override fun onChange(des: String) {
-                Log.e(TAG, "接受到 onChange: ")
-            }
-
-        })
-        //lifecycle将观察者和被观察者绑定，解决组件对activity生命周期的依赖问题
-        lifecycle.addObserver(lifecycleListener)
-
         navController = Navigation.findNavController(this,R.id.nav_host_fragment_container)
         navController?.let { _navController ->
             appBarConfiguration = AppBarConfiguration.Builder(_navController.graph).build()
@@ -72,21 +61,6 @@ class MainActivity : AppCompatActivity() {
             return NavigationUI.navigateUp(navController!!, appBarConfiguration!!)
         }
         return super.onSupportNavigateUp()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        Log.e(TAG, "onResume: 执行", )
-    }
-
-    override fun onPause() {
-        super.onPause()
-        Log.e(TAG, "onPause: 执行", )
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.e(TAG, "onDestroy: 执行", )
     }
 
     //添加菜单栏
