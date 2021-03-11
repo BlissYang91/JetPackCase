@@ -16,11 +16,11 @@ class TimerActivity : AppCompatActivity() {
 
     private fun init() {
         val timerViewModel = ViewModelProvider(this).get(TimerViewModel::class.java)
-        timerViewModel.setOnTimeChangeListener(object : TimerViewModel.OnTimeChangeListener {
-            override fun onTimeChange(second: Int) {
-                Log.e(TAG, "onTimeChange:$second ")
-            }
-        })
-        timerViewModel.startTiming()
+//        timerViewModel.setOnTimeChangeListener(object : TimerViewModel.OnTimeChangeListener {
+//            override fun onTimeChange(second: Int) {
+//                Log.e(TAG, "onTimeChange:$second ")
+//            }
+//        })
+//        timerViewModel.startTiming()
     }
 }
